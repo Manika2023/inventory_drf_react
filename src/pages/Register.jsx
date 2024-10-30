@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import myImage from '../assets/avatar.png'; 
 
 export default function Register({ handleLogin }) {
   const [username, setUsername] = useState("");
@@ -72,7 +73,7 @@ export default function Register({ handleLogin }) {
       <div className="w-full max-w-md bg-white my-5 shadow-lg rounded-lg p-8">
         <div className="flex justify-center mb-2">
           <img
-            src="/images/Avatar.png"
+            src={myImage}
             alt="Avatar"
             className="rounded-full w-24 h-24 border-2 border-green-500"
           />
