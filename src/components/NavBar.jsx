@@ -31,7 +31,7 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
     <nav className="bg-blue-600 p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-white text-2xl font-semibold">
-          <Link to="/">CRUD</Link>
+          <Link to="/">Inventory Management System</Link>
         </div>
 
         {/* Desktop Menu */}
@@ -82,8 +82,6 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
       {isOpen && (
         <div className="md:hidden bg-blue-600">
           <Link to="/" className={`block py-2 px-4 hover:bg-blue-700 ${isActive('/')}`}>Home</Link>
-          <Link to="/about" className={`block py-2 px-4 hover:bg-blue-700 ${isActive('/about')}`}>About</Link>
-          <Link to="/blog" className={`block py-2 px-4 hover:bg-blue-700 ${isActive('/blog')}`}>Blog</Link>
           <form onSubmit={handleSearch} className="flex flex-col items-start p-4">
             <input
               type="text"
