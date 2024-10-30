@@ -48,9 +48,9 @@ function ProductList() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {products.map((product,index) => (
             <tr key={product.product_code}>
-              <td className="py-2 px-4 border">{product.id}</td>
+              <td className="py-2 px-4 border">{index + 1}</td>
               <td className="py-2 px-4 border">{product.product_code}</td>
               <td className="py-2 px-4 border">{formatDateTime(product.datetime)}</td>
               <td className="py-2 px-4 border">{product.name}</td>
