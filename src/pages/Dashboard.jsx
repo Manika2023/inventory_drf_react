@@ -68,7 +68,6 @@ function Dashboard() {
     }
   };
 
-  // Pre-built function to format date and time using date-fns
   const formatDateTime = (datetime) => {
     return format(new Date(datetime), 'dd-MM-yyyy HH:mm:ss');
   };
@@ -76,13 +75,13 @@ function Dashboard() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Product List</h1>
-      <form onSubmit={handleSearch} className="flex items-center space-x-2">
+      <form onSubmit={handleSearch} className="flex flex-wrap items-center space-x-2 mb-4">
         <input
           type="text"
           placeholder="Search..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="border rounded-lg px-4 py-2"
+          className="flex-grow border rounded-lg px-4 py-2 mb-2 md:mb-0"
         />
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
           Search
@@ -108,49 +107,52 @@ function Dashboard() {
           Create Product +
         </button>
       </div>
-      <table className="min-w-full bg-white">
-        <thead>
-          <tr>
-            <th className="py-2 px-4 border">Sl.no</th>
-            <th className="py-2 px-4 border">Product Code</th>
-            <th className="py-2 px-4 border">Date & Time</th>
-            <th className="py-2 px-4 border">Name</th>
-            <th className="py-2 px-4 border">Description</th>
-            <th className="py-2 px-4 border">Price</th>
-            <th className="py-2 px-4 border">Status</th>
-            <th className="py-2 px-4 border">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product,index) => (
-            <tr key={product.id}>
-              <td className="py-2 px-4 border">{index + 1}</td>
-              <td className="py-2 px-4 border">{product.product_code}</td>
-              <td className="py-2 px-4 border">{formatDateTime(product.datetime)}</td>
-              <td className="py-2 px-4 border">{product.name}</td>
-              <td className="py-2 px-4 border">{product.description}</td>
-              <td className="py-2 px-4 border">₹{product.price}</td>
-              <td className={`py-2 px-4 border ${product.status === 'Active' ? 'text-green-500' : 'text-red-500'}`}>
-                {product.status}
-              </td>
-              <td className="py-2 px-4 border flex space-x-2">
-                <button 
-                  onClick={() => handleEditProduct(product.id)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Update
-                </button>
-                <button 
-                  onClick={() => confirmDeletePost(product.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                >
-                  Delete
-                </button>
-              </td>
+      
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-200">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 border">Sl.no</th>
+              <th className="py-2 px-4 border">Product Code</th>
+              <th className="py-2 px-4 border">Date & Time</th>
+              <th className="py-2 px-4 border">Name</th>
+              <th className="py-2 px-4 border">Description</th>
+              <th className="py-2 px-4 border">Price</th>
+              <th className="py-2 px-4 border">Status</th>
+              <th className="py-2 px-4 border">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map((product, index) => (
+              <tr key={product.id}>
+                <td className="py-2 px-4 border">{index + 1}</td>
+                <td className="py-2 px-4 border">{product.product_code}</td>
+                <td className="py-2 px-4 border">{formatDateTime(product.datetime)}</td>
+                <td className="py-2 px-4 border">{product.name}</td>
+                <td className="py-2 px-4 border">{product.description}</td>
+                <td className="py-2 px-4 border">₹{product.price}</td>
+                <td className={`py-2 px-4 border ${product.status === 'Active' ? 'text-green-500' : 'text-red-500'}`}>
+                  {product.status}
+                </td>
+                <td className="py-2 px-4 border flex flex-wrap space-x-2">
+                  <button 
+                    onClick={() => handleEditProduct(product.id)}
+                    className="bg-blue-500 text-white px-2 py-1 rounded mb-1 md:mb-0"
+                  >
+                    Update
+                  </button>
+                  <button 
+                    onClick={() => confirmDeletePost(product.id)}
+                    className="bg-red-500 text-white px-2 py-1 rounded"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {productIdToDelete && (
         <DeleteConfirm
