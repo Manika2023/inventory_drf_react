@@ -6,7 +6,7 @@ function ProductList() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('https://crud-backend-drf.up.railway.app/crud/api/products/', {  
+    fetch('https://crud-backend-drf.production.up.railway.app/crud/api/products/', {  
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
